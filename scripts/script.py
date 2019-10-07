@@ -3,13 +3,13 @@ import json
 import collections
 import re 
 
-accessToken = "###################################"
+accessToken = "<--insert your accessToken here-->"
 headers = {"Authorization": "bearer "+ accessToken }
 
-def getpullRequests():
+def getpullRequests(username):
     topic_query = """
     query {
-    repositoryOwner(login:"iammarco11") {
+    repositoryOwner(login:""" + str(username) + """) {
         login 
         ... on User {
         name
@@ -29,20 +29,19 @@ def getpullRequests():
     request = requests.post('https://api.github.com/graphql', json={'query': topic_query}, headers=headers)
     if request.status_code == 200:
         result = request.json()
-        flag = 0
-        storedData = {}
-        for user in result['data']['repositoryOwner']['pullRequests']['nodes']:
-            TxttoCompare=user['createdAt']
-            eachPr = re.match(r'^2019-10',TxttoCompare)
-            if eachPr:
-                flag = flag + 1
-                storedData['id']=user['id']
-                storedData['createdAt']=user['createdAt']
-                storedData['additions']=user['additions']
-                storedData['deletions']=user['deletions']
-                print(storedData) #Can use this as count of PR 
-        if flag == 0:
+        prsdata = {}
+        for pr in result['data']['repositoryOwner']['pullRequests']['nodes']:
+            prdata = {}
+            if re.match(r'^2019-10', pr['createdAt']):
+                prdata['createdAt'] = pr['createdAt']
+                prdata['additions'] = pr['additions']
+                prdata['deletions'] = pr['deletions']
+                prsdata[pr['id']] = prdata
+        if prsdata:
+            print(prsdata)
+        else:
             print("No PRs made in Hacktoberfest")
 
 if __name__ == "__main__":
-    getpullRequests()
+    username = input("Enter the GitHub username: ")
+    getpullRequests(username)
