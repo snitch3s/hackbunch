@@ -55,9 +55,10 @@ def getpullRequests(username):
                 prsdata[pr['id']] = prdata
         if prsdata:
             #print(prsdata)
-            return prsdata
+            return render_template('prs.html', prs=prsdata)
         else:
             print("No PRs made in Hacktoberfest")
+            return render_template('prs.html')
 
 if __name__ == "__main__":
 	app.debug = True
