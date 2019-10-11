@@ -103,6 +103,6 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-.chtenv
+chtenv/
 
 .__pycache__

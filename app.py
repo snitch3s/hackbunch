@@ -3,10 +3,11 @@ import json
 import collections
 import re 
 
+from secret import accessToken
+
 from flask import Flask, render_template,request
 app= Flask(__name__)
 
-accessToken = "<-Insert Access code here->"
 headers = {"Authorization": "bearer "+ accessToken }
 
 
