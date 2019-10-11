@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title> PRs during Hacktoberfest </title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	</head>
+	<body>
+    <div class="container">
+        {% if prs is mapping %}
+        <table class="table table-bordered">
+            <tr>
+                <th>ID</th>
+                <th>created at</th>
+                <th>additions</th>
+                <th>deletions</th>
+            </tr>
+            {% for id in prs: %}
+            <tr>
+                <td>{{ id }}</td>
+                <td>{{ prs[id]['createdAt'] }}</td>
+                <td>{{ prs[id]['additions'] }}</td>
+                <td>{{ prs[id]['deletions'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <h3 class="text-center">No PRs made in Hacktoberfest</h3>
+        {% endif %}
+    </div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</body>
+</html>
