@@ -25,8 +25,8 @@ def index():
 
 def getpullRequests(username):
     topic_query = """
-    query {
-    repositoryOwner(login:""" + str(username) + """) {
+    query ($name:String!){
+    repositoryOwner(login:$name){
         login 
         ... on User {
         name
@@ -43,7 +43,10 @@ def getpullRequests(username):
     }
     } 
     """
-    request = requests.post('https://api.github.com/graphql', json={'query': topic_query}, headers=headers)
+    variables=dict({
+        "name":str(username)
+    })    
+    request = requests.post('https://api.github.com/graphql', json={'query': topic_query,"variables":variables},headers=headers)
     if request.status_code == 200:
         result = request.json()
         prsdata = {}
