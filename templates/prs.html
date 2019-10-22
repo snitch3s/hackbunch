@@ -2,33 +2,81 @@
 <html>
 	<head>
 		<title> PRs during Hacktoberfest </title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	</head>
-	<body>
-    <div class="container">
-        {% if prs is mapping %}
-        <table class="table table-bordered">
-            <tr>
-                <th>ID</th>
-                <th>created at</th>
-                <th>additions</th>
-                <th>deletions</th>
-            </tr>
-            {% for id in prs: %}
-            <tr>
-                <td>{{ id }}</td>
-                <td>{{ prs[id]['createdAt'] }}</td>
-                <td>{{ prs[id]['additions'] }}</td>
-                <td>{{ prs[id]['deletions'] }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-        {% else %}
-            <h3 class="text-center">No PRs made in Hacktoberfest</h3>
-        {% endif %}
-    </div>
+   		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet"> 
+		<link href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap" rel="stylesheet"> 
+		<link href="https://fonts.googleapis.com/css?family=Advent+Pro&display=swap" rel="stylesheet"> 
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    </head>	
+    <style>
+	html{
+        height:100%;
+    }
+    h1{
+		margin-top: 80px !important; 
+		color: #e0f50a ;
+        font-family: 'Righteous', cursive;
+        text-align:center;
+	}
+	body{   
+
+		height: 100%;
+ 		margin: 0;
+		color: #95e771 ;
+		font-size: 150%;
+		font-family: 'Advent Pro', sans-serif;
+        background-image: url("https://www.elsetge.cat/myimg/f/160-1600491_autodesk-wallpaper-website-background.jpg");
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .header{
+        color:Bisque;
+        font-size:200%;
+        text-align: center
+    }
+    
+    </style>
+    <body>
+
+
+    <div class="bg">
+        <div class="animated  bounceInDown delay-.5s">
+            <div class="container">
+                <div class="header">
+
+                    <h1>This is the data</h1>
+                </div>
+                {% if prs is mapping %}
+                <div class="table-responsive">
+                    <table class="table table-dark table-striped">
+                        <tr>
+                            <th>ID</th>
+                            <th>created at</th>
+                            <th>additions</th>
+                            <th>deletions</th>
+                        </tr>
+                        {% for id in prs: %}
+                        <tr>
+                            <td>{{ id }}</td>
+                            <td>{{ prs[id]['createdAt'] }}</td>
+                            <td>{{ prs[id]['additions'] }}</td>
+                            <td>{{ prs[id]['deletions'] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                {% else %}
+                    <h3 class="text-center">No PRs made in Hacktoberfest</h3>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 	</body>
 </html>
