@@ -22,6 +22,14 @@ def index():
 			return '''{}'''.format(prsdata)
 	return render_template('index.html')
 
+@app.errorhandler(500)
+def not_found(e):
+  nouser={
+      "id":"None"
+  }
+  return render_template('prs.html',nouser=nouser), 500
+
+
 
 def getpullRequests(username):
     topic_query = """
@@ -50,21 +58,22 @@ def getpullRequests(username):
     if request.status_code == 200:
         result = request.json()
         prsdata = {}
+        prcount=0
         for pr in result['data']['repositoryOwner']['pullRequests']['nodes']:
             prdata = {}
             if re.match(r'^2019-10', pr['createdAt']):
+                prcount+=1
                 prdata['createdAt'] = pr['createdAt']
                 prdata['additions'] = pr['additions']
                 prdata['deletions'] = pr['deletions']
                 prsdata[pr['id']] = prdata
         if prsdata:
             #print(prsdata)
-            return render_template('prs.html', prs=prsdata)
+            return render_template('prs.html', prs=prsdata,prcount=prcount)
         else:
             print("No PRs made in Hacktoberfest")
-            return render_template('prs.html')
+            return render_template('prs.html',prcount=prcount)
 
 if __name__ == "__main__":
-	app.debug = True
-	app.run()
+    app.run()
 
