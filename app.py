@@ -72,7 +72,10 @@ def getpullRequests(username):
             return render_template('prs.html', prs=prsdata,prcount=prcount)
         else:
             print("No PRs made in Hacktoberfest")
-            return render_template('prs.html',prcount=prcount)
+            data={
+            "id":"Null"
+            }
+            return render_template('prs.html',data=data)
 
 if __name__ == "__main__":
     app.run()
