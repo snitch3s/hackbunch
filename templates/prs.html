@@ -53,6 +53,9 @@
 
                     <h1>This is the data</h1>
                 </div>
+                {% if nouser is mapping: %}
+                    <h3 class="text-center">No Account in github</h3>
+                {% endif %}
                 {% if prs is mapping %}
                 <div class="table-responsive">
                     <table class="table table-dark table-striped">
@@ -71,10 +74,11 @@
                         </tr>
                         {% endfor %}
                     </table>
-                </div>
-                {% else %}
+                {% endif %}    
+                </div>           
+                {% if data is mapping: %}
                     <h3 class="text-center">No PRs made in Hacktoberfest</h3>
-                {% endif %}
+                {% endif %}                
             </div>
         </div>
     </div>

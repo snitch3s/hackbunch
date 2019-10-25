@@ -46,5 +46,8 @@ def getpullRequests(username):
             print("No PRs made in Hacktoberfest")
 
 if __name__ == "__main__":
-    username = input("Enter the GitHub username: ")
-    getpullRequests(username)
+    try:
+        username = input("Enter the GitHub username: ")
+        getpullRequests(username)
+    except TypeError:
+        print("No user exists")
