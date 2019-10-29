@@ -53,7 +53,7 @@ class pullRequestsData:
                 self.data['prsdata'] = prsdata
             else:
                 self.data['username'] = result['data']['repositoryOwner']
-
+                
     def displayData(self):
         if(self.data['username'] != None):
             if(self.data['prsdata']):
@@ -62,10 +62,31 @@ class pullRequestsData:
                 print("No PRs for Hacktoberfest")
         else:
             print("User doesn't exist")
-
+        
+    def returnsData(self):
+        return self.data
 
 if __name__ == "__main__":
-    username = input("Enter the GitHub username: ")
-    prData = pullRequestsData(username)
-    prData.getPRData()
-    prData.displayData()
+    choice = input("To enter username enter 1 or to use existing data enter 2: ")
+    if int(choice) == 1:
+        username = input("Enter the GitHub username: ")
+        prData = pullRequestsData(username)
+        prData.getPRData()
+        prData.displayData()
+    
+    elif int(choice) == 2:
+        usernames = [x.replace('\n', '') for x in open("data.txt", "r").readlines()]
+        data=[]
+        for username in usernames:
+            prData = pullRequestsData(username)
+            prData.getPRData()
+            data.append(prData.returnsData())
+        totalPRCount=0
+        totalAddCount=0
+        totalDelCount=0
+        for item in data:
+            totalPRCount=totalPRCount+len(dict(dict(item)['prsdata']).keys())
+            for i in dict(item)['prsdata'].values():
+                totalAddCount+=int(i['additions'])
+                totalDelCount+=int(i['deletions'])
+        print(totalPRCount,totalAddCount,totalDelCount)
