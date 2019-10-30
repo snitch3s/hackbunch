@@ -2,6 +2,7 @@ import requests
 import json
 import collections
 import re 
+import argparse
 
 from secret import accessToken
 
@@ -67,15 +68,16 @@ class pullRequestsData:
         return self.data
 
 if __name__ == "__main__":
-    choice = input("To enter username enter 1 or to use existing data enter 2: ")
-    if int(choice) == 1:
-        username = input("Enter the GitHub username: ")
-        prData = pullRequestsData(username)
+    parser = argparse.ArgumentParser(description="Script to find stats of users individually or as a group",allow_abbrev=False)
+    parser.add_argument('-u',"--username", action='store', type=str,help="Enter the username")
+    parser.add_argument('-t',"--text", action='store', type=str,help="Use the text file")
+    args = parser.parse_args()
+    if args.username:
+        prData = pullRequestsData(args.username)
         prData.getPRData()
         prData.displayData()
-    
-    elif int(choice) == 2:
-        usernames = [x.replace('\n', '') for x in open("data.txt", "r").readlines()]
+    elif args.text:
+        usernames = [x.replace('\n', '') for x in open("{}".format(args.text), "r").readlines()]
         data=[]
         for username in usernames:
             prData = pullRequestsData(username)
