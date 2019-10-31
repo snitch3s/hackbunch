@@ -29,7 +29,7 @@ Now, the app should be running on the localhost, browse to to the link where you
 ## Working with the scripts
 1. You need to save the usernames in a textfile, which is stored in the scripts file.
 
->Make sure that the username is accurate, without any unwanted spaces
+> Make sure that the usernames are accurate, without any unwanted spaces anywhere.
 
 2. Use the command for help about the parameters that can be inputted
 ```
