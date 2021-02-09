@@ -2,7 +2,9 @@
 
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
-A simple hacktoberfest tracker for your community. 
+A simple hacktoberfest tracker for your community. Generates a image with the github avatars of the community people as collage and puts the hacktoberfest stats on the image, you can customize by adding logos too.
+
+![pic](./images/pic.jpg)
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
