@@ -36,23 +36,23 @@ Now, the app should be running on the localhost, browse to to the link where you
 
 > Make sure that the usernames are accurate, without any unwanted spaces anywhere.
 
-2. Use the command for help about the parameters that can be inputted
+2. Use the command for help about the parameters that can be inputed.
 ```
 python3 scripts/script.py -h
 ```
 3. Running the script:
-+ Get the stats on an individual user
++ Get the stats on an individual user.
 ```
 python3 scripts/script.py -u <username>
 ```
-+ Get the stats of the group from the text file
++ Get the stats of the group from the text file.
 ```
 python3 scripts/script.py -t <textfile.txt>
 ```
 
 
 ## Contributing Help
-If you are really interested in contributing to the please follow refer to the [CONTRIBUTING.md](CONTRIBUTING.md).
+If you are really interested in contributing to this repository please refer to the [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
